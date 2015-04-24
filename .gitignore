@@ -15,3 +15,7 @@ Icon
 .floobit
 .floo
 .flooignore
+
+# custom ignored files
+node_modules/
+Free-Trial-4-24-2015-credentials.publishsettings
