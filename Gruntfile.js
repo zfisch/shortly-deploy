@@ -73,7 +73,7 @@ module.exports = function(grunt) {
     cssmin: {
       combine: {
         files: {
-          '<%= build_dir %>/styles.min.css': ['<%= webroot %>/style.css']
+          '<%= build_dir %>/style.min.css': ['<%= webroot %>/style.css']
         }
       }
     },
@@ -97,6 +97,9 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+      },
+      localServer: {
+        command: 'node server.js'
       }
     },
   };
@@ -133,6 +136,19 @@ module.exports = function(grunt) {
     grunt.task.run([ 'watch' ]);
   });
 
+  grunt.registerTask('preview', function (target) {
+    // Running nodejs in a different process and displaying output on the main console
+    var node = grunt.util.spawn({
+         cmd: 'grunt',
+         grunt: true,
+         args: 'node'
+    });
+    node.stdout.pipe(process.stdout);
+    node.stderr.pipe(process.stderr);
+
+    grunt.task.run([ 'watch' ]);
+  });
+
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
@@ -158,7 +174,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
-    // add your deploy tasks here
+    'build',
+    'shell:localServer'
   ]);
 
 
