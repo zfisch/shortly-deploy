@@ -1,8 +1,22 @@
 module.exports = function(grunt) {
 
-  grunt.initConfig({
+  ////////////////////////////////////////////////////
+  // Task Configuration
+  ////////////////////////////////////////////////////
+
+  var _ = grunt.util._;
+  var buildConfig = module.require('./build-config.js');
+  var taskConfig = {
     pkg: grunt.file.readJSON('package.json'),
+
     concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: ['src/intro.js', 'src/project.js', 'src/outro.js'],
+        dest: 'dist/built.js'
+      }
     },
 
     mochaTest: {
@@ -24,14 +38,7 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: [
-        // Add filespec list here
-        'server.js',
-        'server-config.js',
-        'app/**/*.js',
-        'lib/**/*.js',
-        'public/client/**/*.js'
-      ],
+      files: '<%= src.js %>',
       options: {
         force: 'true',
         jshintrc: '.jshintrc',
@@ -66,7 +73,13 @@ module.exports = function(grunt) {
       prodServer: {
       }
     },
-  });
+  };
+
+  grunt.initConfig(_.extend(taskConfig, buildConfig));
+
+  ////////////////////////////////////////////////////
+  // Module Dependencies -- Vendor Tasks
+  ////////////////////////////////////////////////////
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -76,6 +89,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+
+  ////////////////////////////////////////////////////
+  // Custom Tasks
+  ////////////////////////////////////////////////////
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -95,12 +112,13 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
+    'jshint',
     'mochaTest'
   ]);
 
   grunt.registerTask('build', [
-    'jshint',
-    'test'
+    'test',
+    'concat'
   ]);
 
   grunt.registerTask('upload', function(n) {
