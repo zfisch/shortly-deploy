@@ -40,6 +40,22 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      vendor: {
+        options: {
+          beautify: false
+        },
+        files: {
+          '<%= build_dir %>/vendor.min.js': ['<%= build_dir %>/vendor.js']
+        }
+      },
+      src: {
+        options: {
+          beautify: false
+        },
+        files: {
+          '<%= build_dir %>/built.min.js': ['<%= build_dir %>/built.js']
+        }
+      }
     },
 
     jshint: {
@@ -123,7 +139,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'test',
-    'concat'
+    'concat',
+    'uglify'
   ]);
 
   grunt.registerTask('upload', function(n) {
