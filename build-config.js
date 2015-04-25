@@ -1,5 +1,5 @@
 module.exports = {
-
+  webroot: 'public',
   build_dir: 'public/dist',
   src: {
     js: [

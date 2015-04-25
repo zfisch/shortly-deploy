@@ -17,5 +17,6 @@ Icon
 .flooignore
 
 # custom ignored files
+public/dist/
 node_modules/
 Free-Trial-4-24-2015-credentials.publishsettings

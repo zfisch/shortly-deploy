@@ -71,6 +71,11 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      combine: {
+        files: {
+          '<%= build_dir %>/styles.min.css': ['<%= webroot %>/style.css']
+        }
+      }
     },
 
     watch: {
@@ -140,7 +145,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'test',
     'concat',
-    'uglify'
+    'uglify',
+    'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
