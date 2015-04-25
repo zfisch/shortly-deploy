@@ -13,7 +13,11 @@ module.exports = function(grunt) {
       options: {
         separator: ';'
       },
-      dist: {
+      vendor: {
+            src: '<%= vendor.js %>',
+            dest: '<%= build_dir %>/vendor.js'
+          },
+      src: {
         src: '<%= src.js %>',
         dest: '<%= build_dir %>/built.js'
       }

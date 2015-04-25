@@ -3,11 +3,16 @@ module.exports = {
   build_dir: 'public/dist',
   src: {
     js: [
-      'server.js',
-      'server-config.js',
       'app/**/*.js',
       'lib/**/*.js',
+      'server-config.js',
+      'server.js',
       'public/client/**/*.js'
+    ]
+  },
+  vendor: {
+    js: [
+      'public/lib/**/*.js'
     ]
   }
 }
