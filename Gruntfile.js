@@ -11,7 +11,8 @@ module.exports = function(grunt) {
 
     concat: {
       options: {
-        separator: ';'
+        stripBanners: true,
+        separator: '; \n//======================================\n'
       },
       vendor: {
             src: '<%= vendor.js %>',

@@ -6,7 +6,9 @@ var Links = new db.Collection();
 
 Links.model = Link;
 
-module.exports = Links;;// NOTE: this file is not needed when using MongoDB
+module.exports = Links;; 
+//======================================
+// NOTE: this file is not needed when using MongoDB
 var db = require('../config');
 var User = require('../models/user');
 
@@ -14,7 +16,9 @@ var Users = new db.Collection();
 
 Users.model = User;
 
-module.exports = Users;;var Bookshelf = require('bookshelf');
+module.exports = Users;; 
+//======================================
+var Bookshelf = require('bookshelf');
 var path = require('path');
 
 var db = Bookshelf.initialize({
@@ -59,7 +63,9 @@ db.knex.schema.hasTable('users').then(function(exists) {
 });
 
 module.exports = db;
-;var db = require('../config');
+; 
+//======================================
+var db = require('../config');
 var crypto = require('crypto');
 
 var Link = db.Model.extend({
@@ -78,7 +84,9 @@ var Link = db.Model.extend({
 });
 
 module.exports = Link;
-;var db = require('../config');
+; 
+//======================================
+var db = require('../config');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
@@ -103,7 +111,9 @@ var User = db.Model.extend({
 });
 
 module.exports = User;
-;var request = require('request');
+; 
+//======================================
+var request = require('request');
 var crypto = require('crypto');
 var bcrypt = require('bcrypt-nodejs');
 var util = require('../lib/utility');
@@ -228,7 +238,9 @@ exports.navToLink = function(req, res) {
         });
     }
   });
-};;var request = require('request');
+};; 
+//======================================
+var request = require('request');
 
 exports.getUrlTitle = function(url, cb) {
   request(url, function(err, res, html) {
@@ -268,7 +280,9 @@ exports.createSession = function(req, res, newUser) {
       res.redirect('/');
     });
 };
-;var express = require('express');
+; 
+//======================================
+var express = require('express');
 var partials = require('express-partials');
 var util = require('./lib/utility');
 
@@ -302,7 +316,9 @@ app.post('/signup', handler.signupUser);
 app.get('/*', handler.navToLink);
 
 module.exports = app;
-;var app = require('./server-config.js');
+; 
+//======================================
+var app = require('./server-config.js');
 
 console.log('process.env', process.env);
 var port = process.env.PORT || 4568;
@@ -310,7 +326,9 @@ var port = process.env.PORT || 4568;
 app.listen(port);
 
 console.log('Server now listening on port ' + port);
-;window.Shortly = Backbone.View.extend({
+; 
+//======================================
+window.Shortly = Backbone.View.extend({
   template: Templates.layout,
 
   events: {
@@ -350,7 +368,9 @@ console.log('Server now listening on port ' + port);
       .addClass('selected');
   }
 });
-;Shortly.createLinkView = Backbone.View.extend({
+; 
+//======================================
+Shortly.createLinkView = Backbone.View.extend({
   className: 'creator',
 
   template: Templates.create,
@@ -405,10 +425,14 @@ console.log('Server now listening on port ' + port);
       .removeClass('error');
   }
 });
-;Shortly.Link = Backbone.Model.extend({
+; 
+//======================================
+Shortly.Link = Backbone.Model.extend({
   urlRoot: '/links'
 });
-;Shortly.LinkView = Backbone.View.extend({
+; 
+//======================================
+Shortly.LinkView = Backbone.View.extend({
   className: 'link',
 
   template: Templates.link,
@@ -419,11 +443,15 @@ console.log('Server now listening on port ' + port);
     return this;
   }
 });
-;Shortly.Links = Backbone.Collection.extend({
+; 
+//======================================
+Shortly.Links = Backbone.Collection.extend({
   model: Shortly.Link,
   url: '/links'
 });
-;Shortly.LinksView = Backbone.View.extend({
+; 
+//======================================
+Shortly.LinksView = Backbone.View.extend({
   className: 'links',
 
   initialize: function(){
@@ -445,7 +473,9 @@ console.log('Server now listening on port ' + port);
     this.$el.append(view.render().el);
   }
 });
-;Shortly.Router = Backbone.Router.extend({
+; 
+//======================================
+Shortly.Router = Backbone.Router.extend({
   initialize: function(options){
     this.$el = options.el;
   },
