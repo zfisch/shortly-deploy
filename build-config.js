@@ -1,6 +1,6 @@
 module.exports = {
 
-  build_dir: 'dist',
+  build_dir: 'public/dist',
   src: {
     js: [
       'server.js',

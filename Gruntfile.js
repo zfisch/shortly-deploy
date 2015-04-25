@@ -14,8 +14,8 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['src/intro.js', 'src/project.js', 'src/outro.js'],
-        dest: 'dist/built.js'
+        src: '<%= src.js %>',
+        dest: '<%= build_dir %>/built.js'
       }
     },
 
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc',
         ignores: [
           'public/lib/**/*.js',
-          'public/dist/**/*.js'
+          '<%= build_dir %>/**/*.js'
         ]
       }
     },
