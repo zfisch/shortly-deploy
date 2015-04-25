@@ -26,6 +26,11 @@ module.exports = function(grunt) {
     jshint: {
       files: [
         // Add filespec list here
+        'server.js',
+        'server-config.js',
+        'app/**/*.js',
+        'lib/**/*.js',
+        'public/client/**/*.js'
       ],
       options: {
         force: 'true',
@@ -94,6 +99,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'jshint'
   ]);
 
   grunt.registerTask('upload', function(n) {
