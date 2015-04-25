@@ -94,12 +94,14 @@ module.exports = function(grunt) {
         tasks: ['cssmin']
       }
     },
-
     shell: {
       prodServer: {
-      },
-      localServer: {
-        command: 'node server.js'
+        command: 'git push azure master',
+        options: {
+          stdout: true,
+          stderr: true,
+          failOnError: true
+        }
       }
     },
   };
@@ -136,19 +138,6 @@ module.exports = function(grunt) {
     grunt.task.run([ 'watch' ]);
   });
 
-  grunt.registerTask('preview', function (target) {
-    // Running nodejs in a different process and displaying output on the main console
-    var node = grunt.util.spawn({
-         cmd: 'grunt',
-         grunt: true,
-         args: 'node'
-    });
-    node.stdout.pipe(process.stdout);
-    node.stderr.pipe(process.stderr);
-
-    grunt.task.run([ 'watch' ]);
-  });
-
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
@@ -167,16 +156,16 @@ module.exports = function(grunt) {
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
-      // add your production server task here
+      grunt.task.run([ 'shell:prodServer' ]);
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
   grunt.registerTask('deploy', [
+    'test',
     'build',
-    'shell:localServer'
+    'upload'
   ]);
-
 
 };

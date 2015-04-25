@@ -9,7 +9,6 @@ Icon
 
 
 
-
 # Floobits
 .floo
 .floobit
@@ -20,3 +19,4 @@ Icon
 public/dist/
 node_modules/
 Free-Trial-4-24-2015-credentials.publishsettings
+credentials.publishsettings
